@@ -150,7 +150,7 @@ X
  is not missing, as was done in Lecture 12.
 • The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic.
 
-<iframe src="static/mar-plot.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="static/mar-hist.html" width=800 height=600 frameBorder=0></iframe>
 
 
 
