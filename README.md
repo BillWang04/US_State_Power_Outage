@@ -59,6 +59,8 @@ Embed at least one plotly plot you created in your notebook that displays the di
 Embed at least one plotly plot that displays the relationship between two columns. Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one bivariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
 
 
+<iframe src="static/bi-plot.html" width=800 height=600 frameBorder=0></iframe>
+
 
 ### Interesting Aggregate
 Found which states had the most outages
@@ -130,6 +132,11 @@ data.groupby('U.S._STATE')['YEAR'].count().sort_values()
 ## NMAR
 State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term “NMAR.”
 
+**CAUSE CATEGORY DETAIL**: CAUSE.CATEGORY.DETAIL
+All the NAN values in CLIMATE.CATEGORY.DETAIL could be NMAR because the type of disaster may affect whether or not the data could be collected. For instance, a severe weather event like heavy rain and hail could occur at the same time and obscure the real cause of the damage. Because of this uncertaintity, this data may not have been collected for certain types of causes which may have coincided. This would cause the missingness of the data to be dependent on what kind of event was occuring and thus it would depend on itself making it NMAR.
+
+
+
 ## MAR
 Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
 • The distribution of column 
@@ -142,6 +149,9 @@ Y
 X
  is not missing, as was done in Lecture 12.
 • The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic.
+
+<iframe src="static/mar-plot.html" width=800 height=600 frameBorder=0></iframe>
+
 
 
 ## Hypothesis Testing
