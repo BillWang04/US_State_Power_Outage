@@ -65,8 +65,8 @@ Embed at least one plotly plot that displays the relationship between two column
 ### Interesting Aggregate
 Found which states had the most outages
 
-<details>
-<summary>Click to expand table</summary>
+<!-- <details>
+<summary>Click to expand table</summary> -->
 
 ```py
 data.groupby('U.S._STATE')['YEAR'].count().sort_values()
@@ -125,7 +125,7 @@ data.groupby('U.S._STATE')['YEAR'].count().sort_values()
 | South Dakota         | 2    |
 | Alaska               | 1    |
 
-</details>
+<!-- </details> -->
 
 ## Assessment Of Missingness
 
