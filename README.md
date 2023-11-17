@@ -262,7 +262,9 @@ We found that the p_value/alpha given was 0, meaning that we would reject the nu
 
 ___
 
-**Question:** COW
+**Question:**: What are the states with the worst outages?
+
+To measure how bad an outage is, we used 
 
 Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
 p
