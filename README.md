@@ -6,64 +6,65 @@
 The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
 <details>
     <summary>Click to see variable names and descriptions</summary>
-
-| Variable Name                    | Description |
-|-----------------------------------|-------------|
-| YEAR                              | Indicates the year when the outage event occurred |
-| MONTH                             | Indicates the month when the outage event occurred |
-| U.S._STATE                        | Represents all the states in the continental U.S. |
-| POSTAL.CODE                       | Represents the postal code of the U.S. states |
-| NERC.REGION                       | The North American Electric Reliability Corporation (NERC) regions involved in the outage event |
-| CLIMATE.REGION                    | U.S. Climate regions as specified by the National Centers for Environmental Information |
-| ANOMALY.LEVEL                     | Represents the oceanic El Niño/La Niña (ONI) index referring to the cold and warm episodes by season |
-| CLIMATE.CATEGORY                  | Represents the climate episodes corresponding to the years. The categories are “Warm”, “Cold” or “Normal” episodes of the climate based on a threshold of ± 0.5 °C for the Oceanic Niño Index (ONI) |
-| OUTAGE.START.DATE                 | This variable indicates the day of the year when the outage event started (as reported by the corresponding Utility in the region) |
-| OUTAGE.START.TIME                 | This variable indicates the time of the day when the outage event started (as reported by the corresponding Utility in the region) |
-| OUTAGE.RESTORATION.DATE           | This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region) |
-| OUTAGE.RESTORATION.TIME           | This variable indicates the time of the day when power was restored to all the customers (as reported by the corresponding Utility in the region) |
-| CAUSE.CATEGORY                    | Categories of all the events causing the major power outages |
-| CAUSE.CATEGORY.DETAIL             | Detailed description of the event categories causing the major power outages |
-| HURRICANE.NAMES                   | If the outage is due to a hurricane, then the hurricane name is given by this variable |
-| OUTAGE.DURATION                   | Duration of outage events (in minutes) |
-| DEMAND.LOSS.MW                   | Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported] |
-| CUSTOMERS.AFFECTED                | Number of customers affected by the power outage event |
-| RES.PRICE                         | Monthly electricity price in the residential sector (cents/kilowatt-hour) |
-| COM.PRICE                         | Monthly electricity price in the commercial sector (cents/kilowatt-hour) |
-| IND.PRICE                         | Monthly electricity price in the industrial sector (cents/kilowatt-hour) |
-| TOTAL.PRICE                       | Average monthly electricity price in the U.S. state (cents/kilowatt-hour) |
-| RES.SALES                         | Electricity consumption in the residential sector (megawatt-hour) |
-| COM.SALES                         | Electricity consumption in the commercial sector (megawatt-hour) |
-| IND.SALES                         | Electricity consumption in the industrial sector (megawatt-hour) |
-| TOTAL.SALES                       | Total electricity consumption in the U.S. state (megawatt-hour) |
-| RES.PERCEN                        | Percentage of residential electricity consumption compared to the total electricity consumption in the state (in %) |
-| COM.PERCEN                        | Percentage of commercial electricity consumption compared to the total electricity consumption in the state (in %) |
-| IND.PERCEN                        | Percentage of industrial electricity consumption compared to the total electricity consumption in the state (in %) |
-| RES.CUSTOMERS                     | Annual number of customers served in the residential electricity sector of the U.S. state |
-| COM.CUSTOMERS                     | Annual number of customers served in the commercial electricity sector of the U.S. state |
-| IND.CUSTOMERS                     | Annual number of customers served in the industrial electricity sector of the U.S. state |
-| TOTAL.CUSTOMERS                   | Annual number of total customers served in the U.S. state |
-| RES.CUST.PCT                      | Percent of residential customers served in the U.S. state (in %) |
-| COM.CUST.PCT                      | Percent of commercial customers served in the U.S. state (in %) |
-| IND.CUST.PCT                      | Percent of industrial customers served in the U.S. state (in %) |
-| PC.REALGSP.STATE                  | Per capita real gross state product (GSP) in the U.S. state (measured in 2009 chained U.S. dollars) |
-| PC.REALGSP.USA                    | Per capita real GSP in the U.S. (measured in 2009 chained U.S. dollars) |
-| PC.REALGSP.REL                    | Relative per capita real GSP as compared to the total per capita real GDP of the U.S. (expressed as fraction of per capita State real GDP & per capita US real GDP) |
-| PC.REALGSP.CHANGE                 | Percentage change of per capita real GSP from the previous year (in %) |
-| UTIL.REALGSP                      | Real GSP contributed by Utility industry (measured in 2009 chained U.S. dollars) |
-| TOTAL.REALGSP                     | Real GSP contributed by all industries (total) (measured in 2009 chained U.S. dollars) |
-| UTIL.CONTRI                       | Utility industry׳s contribution to the total GSP in the State (expressed as percent of the total real GDP that is contributed by the Utility industry) (in %) |
-| PI.UTIL.OFUSA                     | State utility sector׳s income (earnings) as a percentage of the total earnings of the U.S. utility sector׳s income (in %) |
-| POPULATION                        | Population in the U.S. state in a year |
-| POPPCT_URBAN                      | Percentage of the total population of the U.S. state represented by the urban population (in %) |
-| POPPCT_UC                         | Percentage of the total population of the U.S. state represented by the population of the urban clusters (in %) |
-| POPDEN_URBAN                      | Population density of the urban areas (persons per square mile) |
-| POPDEN_UC                         | Population density of the urban clusters (persons per square mile) |
-| POPDEN_RURAL                      | Population density of the rural areas (persons per square mile) |
-| AREAPCT_URBAN                     | Percentage of the land area of the U.S. state represented by the land area of the urban areas (in %) |
-| AREAPCT_UC                        | Percentage of the land area of the U.S. state represented by the land area of the urban clusters (in %) |
-| PCT_LAND                          | Percentage of land area in the U.S. state as compared to the overall land area in the continental U.S. (in %) |
-| PCT_WATER_TOT                     | Percentage of water area in the U.S. state as compared to the overall water area in the continental U.S. (in %) |
-| PCT_WATER_INLAND                  | Percentage of inland water area in the U.S. state as compared to the overall inland water
+    {% raw %}
+    | Variable Name                    | Description |
+    |-----------------------------------|-------------|
+    | YEAR                              | Indicates the year when the outage event occurred |
+    | MONTH                             | Indicates the month when the outage event occurred |
+    | U.S._STATE                        | Represents all the states in the continental U.S. |
+    | POSTAL.CODE                       | Represents the postal code of the U.S. states |
+    | NERC.REGION                       | The North American Electric Reliability Corporation (NERC) regions involved in the outage event |
+    | CLIMATE.REGION                    | U.S. Climate regions as specified by the National Centers for Environmental Information |
+    | ANOMALY.LEVEL                     | Represents the oceanic El Niño/La Niña (ONI) index referring to the cold and warm episodes by season |
+    | CLIMATE.CATEGORY                  | Represents the climate episodes corresponding to the years. The categories are “Warm”, “Cold” or “Normal” episodes of the climate based on a threshold of ± 0.5 °C for the Oceanic Niño Index (ONI) |
+    | OUTAGE.START.DATE                 | This variable indicates the day of the year when the outage event started (as reported by the corresponding Utility in the region) |
+    | OUTAGE.START.TIME                 | This variable indicates the time of the day when the outage event started (as reported by the corresponding Utility in the region) |
+    | OUTAGE.RESTORATION.DATE           | This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region) |
+    | OUTAGE.RESTORATION.TIME           | This variable indicates the time of the day when power was restored to all the customers (as reported by the corresponding Utility in the region) |
+    | CAUSE.CATEGORY                    | Categories of all the events causing the major power outages |
+    | CAUSE.CATEGORY.DETAIL             | Detailed description of the event categories causing the major power outages |
+    | HURRICANE.NAMES                   | If the outage is due to a hurricane, then the hurricane name is given by this variable |
+    | OUTAGE.DURATION                   | Duration of outage events (in minutes) |
+    | DEMAND.LOSS.MW                   | Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported] |
+    | CUSTOMERS.AFFECTED                | Number of customers affected by the power outage event |
+    | RES.PRICE                         | Monthly electricity price in the residential sector (cents/kilowatt-hour) |
+    | COM.PRICE                         | Monthly electricity price in the commercial sector (cents/kilowatt-hour) |
+    | IND.PRICE                         | Monthly electricity price in the industrial sector (cents/kilowatt-hour) |
+    | TOTAL.PRICE                       | Average monthly electricity price in the U.S. state (cents/kilowatt-hour) |
+    | RES.SALES                         | Electricity consumption in the residential sector (megawatt-hour) |
+    | COM.SALES                         | Electricity consumption in the commercial sector (megawatt-hour) |
+    | IND.SALES                         | Electricity consumption in the industrial sector (megawatt-hour) |
+    | TOTAL.SALES                       | Total electricity consumption in the U.S. state (megawatt-hour) |
+    | RES.PERCEN                        | Percentage of residential electricity consumption compared to the total electricity consumption in the state (in %) |
+    | COM.PERCEN                        | Percentage of commercial electricity consumption compared to the total electricity consumption in the state (in %) |
+    | IND.PERCEN                        | Percentage of industrial electricity consumption compared to the total electricity consumption in the state (in %) |
+    | RES.CUSTOMERS                     | Annual number of customers served in the residential electricity sector of the U.S. state |
+    | COM.CUSTOMERS                     | Annual number of customers served in the commercial electricity sector of the U.S. state |
+    | IND.CUSTOMERS                     | Annual number of customers served in the industrial electricity sector of the U.S. state |
+    | TOTAL.CUSTOMERS                   | Annual number of total customers served in the U.S. state |
+    | RES.CUST.PCT                      | Percent of residential customers served in the U.S. state (in %) |
+    | COM.CUST.PCT                      | Percent of commercial customers served in the U.S. state (in %) |
+    | IND.CUST.PCT                      | Percent of industrial customers served in the U.S. state (in %) |
+    | PC.REALGSP.STATE                  | Per capita real gross state product (GSP) in the U.S. state (measured in 2009 chained U.S. dollars) |
+    | PC.REALGSP.USA                    | Per capita real GSP in the U.S. (measured in 2009 chained U.S. dollars) |
+    | PC.REALGSP.REL                    | Relative per capita real GSP as compared to the total per capita real GDP of the U.S. (expressed as fraction of per capita State real GDP & per capita US real GDP) |
+    | PC.REALGSP.CHANGE                 | Percentage change of per capita real GSP from the previous year (in %) |
+    | UTIL.REALGSP                      | Real GSP contributed by Utility industry (measured in 2009 chained U.S. dollars) |
+    | TOTAL.REALGSP                     | Real GSP contributed by all industries (total) (measured in 2009 chained U.S. dollars) |
+    | UTIL.CONTRI                       | Utility industry׳s contribution to the total GSP in the State (expressed as percent of the total real GDP that is contributed by the Utility industry) (in %) |
+    | PI.UTIL.OFUSA                     | State utility sector׳s income (earnings) as a percentage of the total earnings of the U.S. utility sector׳s income (in %) |
+    | POPULATION                        | Population in the U.S. state in a year |
+    | POPPCT_URBAN                      | Percentage of the total population of the U.S. state represented by the urban population (in %) |
+    | POPPCT_UC                         | Percentage of the total population of the U.S. state represented by the population of the urban clusters (in %) |
+    | POPDEN_URBAN                      | Population density of the urban areas (persons per square mile) |
+    | POPDEN_UC                         | Population density of the urban clusters (persons per square mile) |
+    | POPDEN_RURAL                      | Population density of the rural areas (persons per square mile) |
+    | AREAPCT_URBAN                     | Percentage of the land area of the U.S. state represented by the land area of the urban areas (in %) |
+    | AREAPCT_UC                        | Percentage of the land area of the U.S. state represented by the land area of the urban clusters (in %) |
+    | PCT_LAND                          | Percentage of land area in the U.S. state as compared to the overall land area in the continental U.S. (in %) |
+    | PCT_WATER_TOT                     | Percentage of water area in the U.S. state as compared to the overall water area in the continental U.S. (in %) |
+    | PCT_WATER_INLAND                  | Percentage of inland water area in the U.S. state as compared to the overall inland water
+    {% endraw %}
 </details>
 
 
@@ -132,67 +133,67 @@ Embed at least one plotly plot that displays the relationship between two column
 ### Interesting Aggregate
 Found which states had the most outages
 
-<!-- <details>
-<summary>Click to expand table</summary> -->
+<details>
+    <summary>Click to expand table</summary>
 
 ```py
 data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
 ```
-
-| U.S. State           | YEAR |
-|----------------------|------|
-| California           | 210  |
-| Texas                | 127  |
-| Washington           | 97   |
-| Michigan             | 95   |
-| New York             | 71   |
-| Maryland             | 58   |
-| Pennsylvania         | 57   |
-| Illinois             | 46   |
-| Florida              | 45   |
-| Indiana              | 43   |
-| Ohio                 | 43   |
-| Utah                 | 41   |
-| Delaware             | 41   |
-| North Carolina       | 40   |
-| Louisiana            | 40   |
-| Virginia             | 37   |
-| New Jersey           | 35   |
-| Tennessee            | 34   |
-| Arizona              | 28   |
-| Oregon               | 26   |
-| Arkansas             | 25   |
-| Oklahoma             | 24   |
-| Wisconsin            | 20   |
-| Maine                | 19   |
-| Connecticut          | 18   |
-| Massachusetts        | 18   |
-| Georgia              | 17   |
-| Missouri             | 17   |
-| Colorado             | 15   |
-| Minnesota            | 15   |
-| New Hampshire        | 14   |
-| Kentucky             | 13   |
-| District of Columbia | 10   |
-| Kansas               | 9    |
-| Idaho                | 9    |
-| Vermont              | 9    |
-| Iowa                 | 8    |
-| New Mexico           | 8    |
-| South Carolina       | 8    |
-| Nevada               | 7    |
-| Wyoming              | 6    |
-| Alabama              | 6    |
-| Hawaii               | 5    |
-| Nebraska             | 4    |
-| West Virginia        | 4    |
-| Mississippi          | 4    |
-| Montana              | 3    |
-| North Dakota         | 2    |
-| South Dakota         | 2    |
-| Alaska               | 1    |
-
-<!-- </details> -->
+    {% raw %}
+    | U.S. State           | YEAR |
+    |----------------------|------|
+    | California           | 210  |
+    | Texas                | 127  |
+    | Washington           | 97   |
+    | Michigan             | 95   |
+    | New York             | 71   |
+    | Maryland             | 58   |
+    | Pennsylvania         | 57   |
+    | Illinois             | 46   |
+    | Florida              | 45   |
+    | Indiana              | 43   |
+    | Ohio                 | 43   |
+    | Utah                 | 41   |
+    | Delaware             | 41   |
+    | North Carolina       | 40   |
+    | Louisiana            | 40   |
+    | Virginia             | 37   |
+    | New Jersey           | 35   |
+    | Tennessee            | 34   |
+    | Arizona              | 28   |
+    | Oregon               | 26   |
+    | Arkansas             | 25   |
+    | Oklahoma             | 24   |
+    | Wisconsin            | 20   |
+    | Maine                | 19   |
+    | Connecticut          | 18   |
+    | Massachusetts        | 18   |
+    | Georgia              | 17   |
+    | Missouri             | 17   |
+    | Colorado             | 15   |
+    | Minnesota            | 15   |
+    | New Hampshire        | 14   |
+    | Kentucky             | 13   |
+    | District of Columbia | 10   |
+    | Kansas               | 9    |
+    | Idaho                | 9    |
+    | Vermont              | 9    |
+    | Iowa                 | 8    |
+    | New Mexico           | 8    |
+    | South Carolina       | 8    |
+    | Nevada               | 7    |
+    | Wyoming              | 6    |
+    | Alabama              | 6    |
+    | Hawaii               | 5    |
+    | Nebraska             | 4    |
+    | West Virginia        | 4    |
+    | Mississippi          | 4    |
+    | Montana              | 3    |
+    | North Dakota         | 2    |
+    | South Dakota         | 2    |
+    | Alaska               | 1    |
+    {% endraw %}
+</details>
 
 ## Assessment Of Missingness
 
