@@ -112,6 +112,23 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 
 ```
 
+<details markdonw = "1"> 
+<summary>cleaned data head</summary>
+
+| OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | OUTAGE.START.DATE | OUTAGE.START.TIME | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START.DATETIME | OUTAGE.RESTORATION.DATETIME |
+|-----|------|-------|------------|-------------|-------------|----------------|---------------|------------------|-------------------|-------------------|-----|--------------|-----------|--------------|----------------|------------|----------|---------------|-----------------|-----------------------|-----------------------------|
+| 1   | 2011 | 7.0   | Minnesota  | MN          | MRO         | East North Central | -0.3          | normal           | 2011-07-01        | 17:00:00          | ... | 2279.0       | 1700.5    | 18.2         | 2.14           | 0.60       | 91.592666| 8.407334      | 5.478743        | 2011-07-01 17:00:00   | 2011-07-03 20:00:00         |
+| 2   | 2014 | 5.0   | Minnesota  | MN          | MRO         | East North Central | -0.1          | normal           | 2014-05-11        | 18:38:00          | ... | 2279.0       | 1700.5    | 18.2         | 2.14           | 0.60       | 91.592666| 8.407334      | 5.478743        | 2014-05-11 18:38:00   | 2014-05-11 18:39:00         |
+| 3   | 2010 | 10.0  | Minnesota  | MN          | MRO         | East North Central | -1.5          | cold             | 2010-10-26        | 20:00:00          | ... | 2279.0       | 1700.5    | 18.2         | 2.14           | 0.60       | 91.592666| 8.407334      | 5.478743        | 2010-10-26 20:00:00   | 2010-10-28 22:00:00         |
+| 4   | 2012 | 6.0   | Minnesota  | MN          | MRO         | East North Central | -0.1          | normal           | 2012-06-19        | 04:30:00          | ... | 2279.0       | 1700.5    | 18.2         | 2.14           | 0.60       | 91.592666| 8.407334      | 5.478743        | 2012-06-19 04:30:00   | 2012-06-20 23:00:00         |
+| 5   | 2015 | 7.0   | Minnesota  | MN          | MRO         | East North Central | 1.2           | warm             | 2015-07-18        | 02:00:00          | ... | 2279.0       | 1700.5    | 18.2         | 2.14           | 0.60       | 91.592666| 8.407334      | 5.478743        | 2015-07-18 02:00:00   | 2015-07-19 07:00:00         |
+
+
+</details>
+
+
+
+
 ### Univariant Graph
 
 This histogram describes what Outage duration times are most common. It seems that most outage durations are often fairly short, around 0 - 1000 minutes long. 
