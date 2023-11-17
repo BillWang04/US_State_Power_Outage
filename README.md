@@ -6,7 +6,6 @@
 The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
 <details>
     <summary>Click to see variable names and descriptions</summary>
-    {% raw %}
     | Variable Name                    | Description |
     |-----------------------------------|-------------|
     | YEAR                              | Indicates the year when the outage event occurred |
@@ -64,7 +63,6 @@ The dataset under analysis contains comprehensive information regarding power ou
     | PCT_LAND                          | Percentage of land area in the U.S. state as compared to the overall land area in the continental U.S. (in %) |
     | PCT_WATER_TOT                     | Percentage of water area in the U.S. state as compared to the overall water area in the continental U.S. (in %) |
     | PCT_WATER_INLAND                  | Percentage of inland water area in the U.S. state as compared to the overall inland water
-    {% endraw %}
 </details>
 
 
@@ -136,10 +134,10 @@ Found which states had the most outages
 <details>
     <summary>Click to expand table</summary>
 
-```py
-data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
-```
-    {% raw %}
+    ```py
+    data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
+    ```
+
     | U.S. State           | YEAR |
     |----------------------|------|
     | California           | 210  |
@@ -192,7 +190,7 @@ data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
     | North Dakota         | 2    |
     | South Dakota         | 2    |
     | Alaska               | 1    |
-    {% endraw %}
+
 </details>
 
 ## Assessment Of Missingness
