@@ -37,7 +37,7 @@ The dataset under analysis contains comprehensive information regarding power ou
     | CAUSE.CATEGORY.DETAIL             | Detailed description of the event categories causing the major power outages |
     | HURRICANE.NAMES                   | If the outage is due to a hurricane, then the hurricane name is given by this variable |
     | OUTAGE.DURATION                   | Duration of outage events (in minutes) |
-    | DEMAND.LOSS.MW                   | Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported] |
+    | DEMAND.LOSS.MW                    | Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported] |
     | CUSTOMERS.AFFECTED                | Number of customers affected by the power outage event |
     | RES.PRICE                         | Monthly electricity price in the residential sector (cents/kilowatt-hour) |
     | COM.PRICE                         | Monthly electricity price in the commercial sector (cents/kilowatt-hour) |
