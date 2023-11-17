@@ -264,7 +264,156 @@ ___
 
 **Question:**: What are the states with the worst outages?
 
-To measure how bad an outage is, we used both the outage duration and customers affected as a way to measure how bad the outage is. We then used the mean as the test statistic 
+To measure how bad an outage is, we used both the outage duration and customers affected as a way to measure how bad the outage is. To evaluate the relationship between power outage severity and specific states in the United States, we conducted a permutation test primarily focused on two variables: "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED," aiming to determine if outage severity differs significantly across various states.
+
+### For OUTAGE.DURATION:
+
+**Null Hypothesis (H0):**
+There is no significant difference in average outage durations across different states in the United States. 
+
+**Alternative Hypothesis (H1):**
+The alternative hypothesis counters the null hypothesis, suggesting that there exists a significant difference in average outage durations among various states.
+
+### For CUSTOMERS.AFFECTED:
+
+**Null Hypothesis (H0):**
+There is no significant difference in the average number of affected customers across different states. 
+
+**Alternative Hypothesis (H1):**
+The alternative hypothesis counters the null hypothesis, suggesting that there exists a significant difference in average customers affected among various states in the country.
+
+
+### Code Explanation
+
+**Test Statistc:**
+
+```py
+def calculate_outage_severity(data, state, var):
+
+    output = data.groupby(state).mean()
+    
+    return output.loc[True,var]
+```
+
+Function computes the average outage severity (mean of the variable of interest) for a given state within the dataset. We will use this as our test statistic. 
+
+**Permutation Test Function:**
+
+```py
+def perm_test(data, state, var, n=1000):
+    #1
+    data = data.copy()[["U.S._STATE", var]]
+    #2
+    data[state] = data["U.S._STATE"] == state
+    #3
+    obs = calculate_outage_severity(data, state, var)
+    test_stats = []
+    #4
+    for _ in range(n):
+        value = np.random.permutation(data[var])
+        shuffled = data.assign(**{var : value })
+        trial = calculate_outage_severity(shuffled, state, var)
+        #5
+        test_stats.append(trial)
+    #6
+    return  (np.array(test_stats) >= obs).mean()
+
+```
+
+- *Data Preparation:*
+    1. Extracts relevant columns ("U.S._STATE" and the specified variable) from the dataset.
+    2. Creates a boolean column based on whether each row corresponds to a specific state.
+- *Permutation Test:*
+
+    3. Calculates the observed outage severity for the specified state and variable.
+    4. Repeatedly shuffles the values of the chosen variable (using numpy's permutation function) and recalculates the outage severity for that state.
+    5. Records the distribution of outage severity values obtained from shuffling the data.
+    6. Computes the proportion of shuffled values greater than or equal to the observed severity, providing the p-value for that specific state.
+
+**Conducting Permutation Tests for All States:**
+
+```py
+all_p_values_duration = {}
+all_p_values_customers = {}
+for i in data['U.S._STATE'].unique():
+    all_p_values_duration[i] = perm_test(data, i, "OUTAGE.DURATION")
+    all_p_values_customers[i] = perm_test(data, i , "CUSTOMERS.AFFECTED")
+```
+
+1. The code iterates through each unique state in the dataset.
+For each state, it conducts permutation tests for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED," generating p-values for each variable in each state.
+2. The resulting p-values are stored in separate dictionaries (all_p_values_duration and all_p_values_customers).
+
+
+**Conclusion**
+
+
+```py
+initial = pd.DataFrame({'duration_p_value' : pd.Series(all_p_values_duration),
+              'customer_p_value' : pd.Series(all_p_values_customers)})
+
+resulting_df = data.groupby('U.S._STATE')[['YEAR']].count().merge(initial, left_index = True, right_index = True).rename(columns = {'YEAR': 'Count of Outages'})
+
+graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_df['customer_p_value'] < 0.05 )].sort_values('customer_p_value')
+```
+
+| U.S._STATE      | Count of Outages | duration_p_value | customer_p_value |
+|-----------------|------------------|------------------|------------------|
+| Montana         | 3                | 0.979            | 0.000            |
+| South Dakota    | 2                | 0.893            | 0.000            |
+| Texas           | 127              | 0.372            | 0.010            |
+| California      | 210              | 1.000            | 0.015            |
+| Florida         | 45               | 0.069            | 0.017            |
+| New York        | 71               | 0.000            | 0.115            |
+| West Virginia   | 4                | 0.049            | 0.212            |
+| Michigan        | 95               | 0.001            | 0.367            |
+| Alaska          | 1                | 0.000            | 0.498            |
+| Wisconsin       | 20               | 0.005            | 0.994            |
+
+
+
+<iframe src="static/p_value_bar.html" width=800 height=600 frameBorder=0></iframe>
+
+
+
+#### Outage Duration and Customer Impact:
+
+1. **Montana and South Dakota**:
+   - Despite non-significant differences in outage duration (p-values of 0.979 and 0.893, respectively), both states remarkably impact affected customers (p-value of 0.000 for both).
+   - These findings highlight consistent customer impact despite minimal variation in outage durations.
+
+2. **Texas**:
+   - Texas exhibits moderately higher outage duration p-values (0.372) but significantly affects customers (p-value of 0.010).
+   - This suggests notable implications for affected customers despite moderate variability in outage duration.
+
+3. **California**:
+   - Despite non-significant differences in outage duration (p-value of 1.000), California significantly impacts affected customers (p-value of 0.015).
+   - This underscores the substantial customer impact despite minimal variations in outage durations.
+
+4. **Florida and New York**:
+   - Both states present relatively smaller p-values for outage duration and affected customers.
+   - While New York shows a smaller p-value for affected customers (0.115), Florida's findings cross the significance threshold for both outage duration (0.069) and affected customers (0.017).
+
+#### Noteworthy Insights:
+
+- **West Virginia** illustrates a moderate effect on affected customers (p-value of 0.212) despite a lower significance level for outage duration (0.049).
+- **Michigan** demonstrates significant customer impact (p-value of 0.367) despite a notably low p-value for outage duration (0.001).
+- **Alaska** exhibits highly significant outage duration (p-value of 0.000) but a moderate impact on affected customers (0.498).
+- **Wisconsin** showcases statistical significance in both outage duration (0.005) and affected customers (0.994), signaling distinctive differences in both aspects.
+
+### Conclusion:
+
+This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities.
+
+
+
+
+
+
+
+
+
+
 
 Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
 p
@@ -275,6 +424,6 @@ Optional: Embed a visualization related to your hypothesis test in your website.
 Tip: When making writing your conclusions to the statistical tests in this project, never use language that implies an absolute conclusion; since we are performing statistical tests and not randomized controlled trials, we cannot prove that either hypothesis is 100% true or false.
 
 
-<iframe src="static/p_value_bar.html" width=800 height=600 frameBorder=0></iframe>
+
 
 
