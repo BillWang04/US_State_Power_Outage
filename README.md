@@ -127,6 +127,11 @@ univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION', showlegend = Fals
 
 ### Bivariant Graph
 
+This bar chart plots the number of outages per state. 
+
+```py
+
+```
 
 <iframe src="static/bi-plot.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -198,9 +203,7 @@ bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
 
 ## Assessment Of Missingness
 
-## NMAR
-
-**CAUSE.CATEGORY.DETAIL**
+## NMAR CAUSE.CATEGORY.DETAIL
 
 All the NAN values in CLIMATE.CATEGORY.DETAIL could be NMAR because the type of disaster may affect whether or not the data could be collected. For instance, a severe weather event like heavy rain and hail could occur at the same time and obscure the real cause of the damage. Because of this uncertaintity, this data may not have been collected for certain types of causes which may have coincided. This would cause the missingness of the data to be dependent on what kind of event was occuring and thus it would depend on itself making it NMAR.
 
