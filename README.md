@@ -1,6 +1,4 @@
----
-title: My custom title
----
+us_state_power_outage
 
 ## Introduction to the Dataset
 ___
