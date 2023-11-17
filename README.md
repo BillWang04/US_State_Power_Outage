@@ -1,4 +1,4 @@
-title: Power Outages Across US States
+Power Outages Across US States
 ---
 
 ## Introduction to the Dataset
