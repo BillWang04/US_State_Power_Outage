@@ -2,13 +2,11 @@
 
 
 ## Introduction to the Dataset
-Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
-
-The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
+Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur.This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
 
 ### Description of Variables
 
-We have included the definitions of the various variables/columns that we used in the analysis below.
+The dataset contains 1534 rows and 55 columns. For this analysis, we decided to only use a few relevent columns. Namely, these were U.S._State, OUTAGE.START.DATE, OUTAGE.START.TIME, OUTAGE.RESTORATION.DATE, OUTAGE.RESTORATION.TIME, CAUSE.CATEGORY.DETAIL, CUSTOMERS.AFFECTED, and OUTAGE.DURATION . We have included the definitions of the 55 various variables/columns that we used in the analysis below.
 
 
 <details markdown="1">
