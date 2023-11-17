@@ -136,64 +136,64 @@ Embed at least one plotly plot that displays the relationship between two column
 Found which states had the most outages
 
 <details markdown="1">
-    <summary>Click to expand table</summary>
+<summary>Click to expand table</summary>
 
-    ```py
-    data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
-    ```
+```py
+data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
+```
 
-    | U.S. State           | YEAR |
-    |----------------------|------|
-    | California           | 210  |
-    | Texas                | 127  |
-    | Washington           | 97   |
-    | Michigan             | 95   |
-    | New York             | 71   |
-    | Maryland             | 58   |
-    | Pennsylvania         | 57   |
-    | Illinois             | 46   |
-    | Florida              | 45   |
-    | Indiana              | 43   |
-    | Ohio                 | 43   |
-    | Utah                 | 41   |
-    | Delaware             | 41   |
-    | North Carolina       | 40   |
-    | Louisiana            | 40   |
-    | Virginia             | 37   |
-    | New Jersey           | 35   |
-    | Tennessee            | 34   |
-    | Arizona              | 28   |
-    | Oregon               | 26   |
-    | Arkansas             | 25   |
-    | Oklahoma             | 24   |
-    | Wisconsin            | 20   |
-    | Maine                | 19   |
-    | Connecticut          | 18   |
-    | Massachusetts        | 18   |
-    | Georgia              | 17   |
-    | Missouri             | 17   |
-    | Colorado             | 15   |
-    | Minnesota            | 15   |
-    | New Hampshire        | 14   |
-    | Kentucky             | 13   |
-    | District of Columbia | 10   |
-    | Kansas               | 9    |
-    | Idaho                | 9    |
-    | Vermont              | 9    |
-    | Iowa                 | 8    |
-    | New Mexico           | 8    |
-    | South Carolina       | 8    |
-    | Nevada               | 7    |
-    | Wyoming              | 6    |
-    | Alabama              | 6    |
-    | Hawaii               | 5    |
-    | Nebraska             | 4    |
-    | West Virginia        | 4    |
-    | Mississippi          | 4    |
-    | Montana              | 3    |
-    | North Dakota         | 2    |
-    | South Dakota         | 2    |
-    | Alaska               | 1    |
+| U.S. State           | YEAR |
+|----------------------|------|
+| California           | 210  |
+| Texas                | 127  |
+| Washington           | 97   |
+| Michigan             | 95   |
+| New York             | 71   |
+| Maryland             | 58   |
+| Pennsylvania         | 57   |
+| Illinois             | 46   |
+| Florida              | 45   |
+| Indiana              | 43   |
+| Ohio                 | 43   |
+| Utah                 | 41   |
+| Delaware             | 41   |
+| North Carolina       | 40   |
+| Louisiana            | 40   |
+| Virginia             | 37   |
+| New Jersey           | 35   |
+| Tennessee            | 34   |
+| Arizona              | 28   |
+| Oregon               | 26   |
+| Arkansas             | 25   |
+| Oklahoma             | 24   |
+| Wisconsin            | 20   |
+| Maine                | 19   |
+| Connecticut          | 18   |
+| Massachusetts        | 18   |
+| Georgia              | 17   |
+| Missouri             | 17   |
+| Colorado             | 15   |
+| Minnesota            | 15   |
+| New Hampshire        | 14   |
+| Kentucky             | 13   |
+| District of Columbia | 10   |
+| Kansas               | 9    |
+| Idaho                | 9    |
+| Vermont              | 9    |
+| Iowa                 | 8    |
+| New Mexico           | 8    |
+| South Carolina       | 8    |
+| Nevada               | 7    |
+| Wyoming              | 6    |
+| Alabama              | 6    |
+| Hawaii               | 5    |
+| Nebraska             | 4    |
+| West Virginia        | 4    |
+| Mississippi          | 4    |
+| Montana              | 3    |
+| North Dakota         | 2    |
+| South Dakota         | 2    |
+| Alaska               | 1    |
 
 </details>
 
