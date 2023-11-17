@@ -209,6 +209,7 @@ ___
 
 All the NAN values in CAUSE.CATEGORY.DETAIL could be NMAR because the type of disaster may affect whether or not the data could be collected. For instance, a severe weather event like heavy rain and hail could occur at the same time and obscure the real cause of the damage. Because of this uncertaintity, this data may not have been collected for certain types of causes which may have coincided. This would cause the missingness of the data to be dependent on what kind of event was occuring and thus it would depend on itself making it NMAR.
 
+If we would want to collect data that would make this column MAR, what we could do is audit precise conditions of weather, and if there are a lot of weather observations, this could mean that the data collecters couldn't categorize what caused the outage. 
 
 ### MAR
 
@@ -219,6 +220,10 @@ The missingness of data in the "Customers Affected" column is random with respec
 **Interpetation of Results** 
 
 The MAR (Missing at Random) permutation test presented here aims to assess whether the "Customers Affected" column in a dataset related to US states is missing randomly or not. This test is crucial in understanding if the absence of data in this column is dependent on "U.S._STATES".
+
+This is the distribution of Nan and Non -Nan for each state.
+
+<iframe src="static/distr_nan-hist.html" width=800 height=600 frameBorder=0></iframe>
 
 We wrote a function called `mar_permutation` that executes the permutation test to simulate randomness in the missingness of data. It first calculates the observed TVD using the `find_tvd` function. Then, it performs a permutation by shuffling the "Customers Affected" column randomly within the dataset numerous times (default 1000 iterations) and computes the TVD for each shuffled dataset. This creates a distribution of TVD values under the assumption that missingness is random.
 
@@ -305,24 +310,18 @@ Conversely, a high p-value suggests weaker evidence against the null hypothesis,
 
 #### Outage Duration and Customer Impact:
 
-1. **Montana and South Dakota**:
-   - Despite non-significant differences in outage duration (p-values of 0.979 and 0.893, respectively), both states remarkably impact affected customers (p-value of 0.000 for both).
-   - These findings highlight consistent customer impact despite minimal variation in outage durations.
+**Group 1** - States with Significant Customer Impact but Not on Outage Duration:
 
-2. **Texas**:
-   - Texas exhibits moderately higher outage duration p-values (0.372) but significantly affects customers (p-value of 0.010).
-   - This suggests notable implications for affected customers despite moderate variability in outage duration.
+Texas, California, Florida
 
-3. **California**:
-   - Despite non-significant differences in outage duration (p-value of 1.000), California significantly impacts affected customers (p-value of 0.015).
-   - This underscores the substantial customer impact despite minimal variations in outage durations.
+**Group 2** - States with Significant Impact on Outage Duration but Not on Customers:
 
-4. **Florida and New York**:
-    - Both states exhibit relatively smaller p-values for both outage duration and affected customers compared to other regions.
+New York, West Virginia, Michigan, Wisconsin
 
-    
+These groupings categorize states based on their statistical significance concerning outage duration and customer impact, providing insights into the varying impacts of power outages across different regions.
+
 
 ### Conclusion:
 
-This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities. If we were to make an educated guess on which states have the most severe outages, we would say that it would be Florida or New York, as their p-valeus are both relatively low, meaning there mean outage duration and affected customers are likely larger than the mean distribution. 
+The analysis of power outage data across several U.S. states reveals intriguing insights into the varied impacts experienced within different regions. Statistical significance, as indicated by the p-values, offers valuable understanding regarding the effects on outage duration and the number of customers affected. Group 1, consisting of Texas, California, and Florida, demonstrates a significant impact on customers but not on outage duration. Conversely, Group 2, encompassing New York, West Virginia, Michigan, and Wisconsin, showcases a noteworthy impact on outage duration without a substantial effect on the number of affected customers. This distinction highlights the diverse nature of power outages across these states, signifying that certain regions may experience significant disruptions in customer service, while others face prolonged outage durations, regardless of the number of customers affected. Such findings underscore the necessity for tailored strategies in addressing power outage management and mitigation efforts based on the distinct challenges prevalent in different geographical areas. Further exploration and targeted interventions can enhance resilience and minimize disruptions in power supply, catering to the unique requirements of each state.
 
