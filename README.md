@@ -3,7 +3,7 @@
 
 ## Introduction to the Dataset
 ___
-Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur.This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
+Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
 
 ### Description of Variables
 
@@ -11,7 +11,7 @@ The dataset contains 1534 rows and 55 columns. For this analysis, we decided to 
 
 
 <details markdown="1">
-<summary>\>Click here to see Variable Descriptions</summary>
+<summary>&#187; Click here to see Variable Descriptions</summary>
 
 | Variable Name                    | Description |
 |-----------------------------------|-------------|
@@ -123,7 +123,7 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 ```
 
 <details markdown = "1"> 
-<summary>\>cleaned data head</summary>
+<summary>&#187; cleaned data head</summary>
 
 | OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | OUTAGE.START.DATE | OUTAGE.START.TIME | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START.DATETIME | OUTAGE.RESTORATION.DATETIME |
 |-----|------|-------|------------|-------------|-------------|----------------|---------------|------------------|-------------------|-------------------|-----|--------------|-----------|--------------|----------------|------------|----------|---------------|-----------------|-----------------------|-----------------------------|
@@ -167,7 +167,7 @@ bivariant = data.groupby('U.S._STATE')['OUTAGE.DURATION'].sum().sort_values().re
 Found which states had the most outages
 
 <details markdown="1">
-<summary>\>Click to expand table</summary>
+<summary>&#187; Click to expand table</summary>
 
 ```py
 bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
