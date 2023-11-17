@@ -122,12 +122,12 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 ```
 
 ### Univariant Graph
-Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one univariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
+
+This histogram describes what Outage duration times are most common. It seems that most outage durations are often fairly short, around 
 
 ```py
-univariant_plot = px.histogram(data['CUSTOMERS.AFFECTED'])
-univariant_plot.update_layout(xaxis_title = 'Customers Affected', showlegend = False, title = 'Count of Customers Affected')
-
+univariant_plot = px.histogram(data['OUTAGE.DURATION'])
+univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION', showlegend = False, title = 'Count of Duration of Outage')
 ```
 
 <iframe src="static/uni-plot.html" width=800 height=600 frameBorder=0></iframe>
@@ -135,8 +135,12 @@ univariant_plot.update_layout(xaxis_title = 'Customers Affected', showlegend = F
 
 ### Bivariant Graph
 
-Embed at least one plotly plot that displays the relationship between two columns. Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one bivariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
+This bar chart plots the total cumilative sum of outage time in minutes per state. You can see that Michigan and New York have a large cumalitve sum of outage time compared to the other states. 
 
+```py
+bivariant = data.groupby('U.S._STATE')['OUTAGE.DURATION'].sum().sort_values().reset_index().plot(kind = 'bar', x ='U.S._STATE' , y= 'OUTAGE.DURATION')
+
+```
 
 <iframe src="static/bi-plot.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -148,7 +152,7 @@ Found which states had the most outages
 <summary>Click to expand table</summary>
 
 ```py
-data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
+bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
 ```
 
 | U.S. State           | YEAR |
