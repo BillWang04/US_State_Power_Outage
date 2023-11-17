@@ -51,6 +51,7 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 ### Univariant Graph
 Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one univariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
 
+
 <iframe src="static/uni-plot.html" width=800 height=600 frameBorder=0></iframe>
 
 
@@ -65,8 +66,8 @@ Embed at least one plotly plot that displays the relationship between two column
 ### Interesting Aggregate
 Found which states had the most outages
 
-<details>
-<summary>Click to expand table</summary>
+<!-- <details>
+<summary>Click to expand table</summary> -->
 
 ```py
 data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
@@ -125,7 +126,7 @@ data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
 | South Dakota         | 2    |
 | Alaska               | 1    |
 
-</details>
+<!-- </details> -->
 
 ## Assessment Of Missingness
 
@@ -138,20 +139,21 @@ All the NAN values in CLIMATE.CATEGORY.DETAIL could be NMAR because the type of 
 
 
 ## MAR
-Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
-• The distribution of column 
-Y
- when column 
-X
- is missing and the distribution of column 
-Y
- when column 
-X
- is not missing, as was done in Lecture 12.
-• The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic.
+
+**Null Hypothesis:**
+
+The missingness of data in the "Customers Affected" column is random with respect to the US states.
+
+**Interpetation of Results** 
+
+The MAR (Missing at Random) permutation test presented here aims to assess whether the "Customers Affected" column in a dataset related to US states is missing randomly or not. This test is crucial in understanding if the absence of data in this column is dependent on "U.S._STATES".
+
+We wrote a function called `mar_permutation` that executes the permutation test to simulate randomness in the missingness of data. It first calculates the observed TVD using the `find_tvd` function. Then, it performs a permutation by shuffling the "Customers Affected" column randomly within the dataset numerous times (default 1000 iterations) and computes the TVD for each shuffled dataset. This creates a distribution of TVD values under the assumption that missingness is random.
+
+We found that the p_value/alpha given was 0, meaning that we would reject the null and say that the missingess of the data "Customers Affected" is MAR with respect to the US States. 
+
 
 <iframe src="static/mar-hist.html" width=800 height=600 frameBorder=0></iframe>
-
 
 
 ## Hypothesis Testing
