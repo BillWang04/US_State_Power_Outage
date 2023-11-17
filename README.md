@@ -391,9 +391,9 @@ graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_d
    - This underscores the substantial customer impact despite minimal variations in outage durations.
 
 4. **Florida and New York**:
-   - Both states present relatively smaller p-values for outage duration and affected customers.
-   - While New York shows a smaller p-value for affected customers (0.115), Florida's findings cross the significance threshold for both outage duration (0.069) and affected customers (0.017).
+    - Both states exhibit relatively smaller p-values for both outage duration and affected customers compared to other regions.
 
+    
 
 ### Conclusion:
 
