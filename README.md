@@ -253,113 +253,54 @@ There is no significant difference in the average number of affected customers a
 The alternative hypothesis counters the null hypothesis, suggesting that there exists a significant difference in average customers affected among various states in the country.
 
 
-### Code Explanation
+### Permutation Test Method
 
 **Test Statistc:**
 
 The `calculate_outage_severity` function computes the average severity of power outages, represented by the mean of a specific variable of interest, within a given state from the dataset. This calculated average serves as our test statistic.
 
-**Permutation Test Function:**
 
-```py
-def perm_test(data, state, var, n=1000):
-    #1
-    data = data.copy()[["U.S._STATE", var]]
-    #2
-    data[state] = data["U.S._STATE"] == state
-    #3
-    obs = calculate_outage_severity(data, state, var)
-    test_stats = []
-    #4
-    for _ in range(n):
-        value = np.random.permutation(data[var])
-        shuffled = data.assign(**{var : value })
-        trial = calculate_outage_severity(shuffled, state, var)
-        #5
-        test_stats.append(trial)
-    #6
-    return  (np.array(test_stats) >= obs).mean()
+**Data Preparation:**
 
-```
-
-- *Data Preparation:*
-    1. Extracts relevant columns ("U.S._STATE" and the specified variable) from the dataset.
-    2. Creates a boolean column based on whether each row corresponds to a specific state.
-- *Permutation Test:*
-
-    3. Calculates the observed outage severity for the specified state and variable.
-    4. Repeatedly shuffles the values of the chosen variable (using numpy's permutation function) and recalculates the outage severity for that state.
-    5. Records the distribution of outage severity values obtained from shuffling the data.
-    6. Computes the proportion of shuffled values greater than or equal to the observed severity, providing the p-value for that specific state.
-
-**Conducting Permutation Tests for All States:**
-
-```py
-all_p_values_duration = {}
-all_p_values_customers = {}
-for i in data['U.S._STATE'].unique():
-    all_p_values_duration[i] = perm_test(data, i, "OUTAGE.DURATION")
-    all_p_values_customers[i] = perm_test(data, i , "CUSTOMERS.AFFECTED")
-```
-
-1. The code iterates through each unique state in the dataset.
-For each state, it conducts permutation tests for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED," generating p-values for each variable in each state.
-2. The resulting p-values are stored in separate dictionaries (all_p_values_duration and all_p_values_customers).
-
-This permutation test to assess the statistical significance of outage severity for each state concerning "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
-
-Data Preparation:
-
-Extracts columns relevant to "U.S._STATE" and the specific variable ("OUTAGE.DURATION" or "CUSTOMERS.AFFECTED").
-Generates a boolean column indicating whether each data entry corresponds to a specific state.
+1. Extracts columns relevant to "U.S._STATE" and the specific variable ("OUTAGE.DURATION" or "CUSTOMERS.AFFECTED").
+2. Generates a boolean column indicating whether each data entry corresponds to a specific state.
 Permutation Test Steps:
-Computes the observed outage severity for the chosen state and variable.
+3. Computes the observed outage severity for the chosen state and variable.
 
-Repeatedly shuffles the values of the selected variable and recalculates the severity, generating a distribution of possible severity values.
-Records the distribution of outage severity values obtained from the shuffling process.
-Computes the proportion of shuffled values greater than or equal to the observed severity, resulting in the p-value for that specific state and variable.
-Conducting Permutation Tests for Each State:
-The provided code iterates through each unique state within the dataset, executing permutation tests for "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED" separately.
+**Permutation Test**
 
-Permutation Tests for Outage Duration and Customers Affected:
-For each state, it performs permutation tests to derive p-values for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
-Storage of Results:
-The resulting p-values are stored separately in dictionaries (all_p_values_duration and all_p_values_customers) corresponding to each state, enabling access to the p-values for each variable in each state for further analysis and interpretation.
+1. Repeatedly shuffles the values of the selected variable(either "OUTAGE.DURATION" or "CUSTOMRS.AFFECTED") and recalculates the severity, generating a distribution of possible severity values of the null.
+2. Records the distribution of outage severity values obtained from the shuffling process of "OUTAGE.DURATION", "CUSTOMERS.AFFECTED".
+3. Computes the proportion of shuffled values greater than or equal to the observed severity, resulting in the p-value for that specific state and variable.
 
+**Conducting Permutation Tests for Each State:**
+1. The provided code iterates through each unique state within the dataset, executing permutation tests for "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED" separately.
 
+2. The resulting p-values are stored separately in the dataframe corresponding to each state, enabling access to the p-values for each variable in each state for further analysis and interpretation.
 
 
 
 
 **Conclusion**
 
-
-```py
-initial = pd.DataFrame({'duration_p_value' : pd.Series(all_p_values_duration),
-              'customer_p_value' : pd.Series(all_p_values_customers)})
-
-resulting_df = data.groupby('U.S._STATE')[['YEAR']].count().merge(initial, left_index = True, right_index = True).rename(columns = {'YEAR': 'Count of Outages'})
-
-graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_df['customer_p_value'] < 0.05 )].sort_values('customer_p_value')
-```
-
-| U.S._STATE      | Count of Outages | duration_p_value | customer_p_value |
-|-----------------|------------------|------------------|------------------|
-| Montana         | 3                | 0.979            | 0.000            |
-| South Dakota    | 2                | 0.893            | 0.000            |
-| Texas           | 127              | 0.372            | 0.010            |
-| California      | 210              | 1.000            | 0.015            |
-| Florida         | 45               | 0.069            | 0.017            |
-| New York        | 71               | 0.000            | 0.115            |
-| West Virginia   | 4                | 0.049            | 0.212            |
-| Michigan        | 95               | 0.001            | 0.367            |
-| Alaska          | 1                | 0.000            | 0.498            |
-| Wisconsin       | 20               | 0.005            | 0.994            |
+| U.S._STATE     | Count of Outages | duration_p_value | customer_p_value |
+|----------------|------------------|------------------|------------------|
+| Texas          | 127              | 0.372            | 0.010            |
+| California     | 210              | 1.000            | 0.015            |
+| Florida        | 45               | 0.069            | 0.017            |
+| New York       | 71               | 0.000            | 0.115            |
+| West Virginia  | 4                | 0.049            | 0.212            |
+| Michigan       | 95               | 0.001            | 0.367            |
+| Wisconsin      | 20               | 0.005            | 0.994            |
 
 
 
 <iframe src="static/p_value_bar.html" width=800 height=600 frameBorder=0></iframe>
 
+
+A low p-value (typically < 0.05) indicates strong evidence against the null hypothesis, suggesting a significant difference in the mean of outage duration or number of customers affected.
+
+Conversely, a high p-value suggests weaker evidence against the null hypothesis, indicating less significant differences or impacts.
 
 
 #### Outage Duration and Customer Impact:
@@ -383,5 +324,5 @@ graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_d
 
 ### Conclusion:
 
-This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities.
+This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities. If we were to make an educated guess on which states have the most severe outages, we would say that it would be Florida or New York, as their p-valeus are both relatively low, meaning there mean outage duration and affected customers are likely larger than the mean distribution. 
 
