@@ -1,5 +1,5 @@
 us_state_power_outage
-
+<-TODO /->
 ## Introduction to the Dataset
 ___
 Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
@@ -90,36 +90,19 @@ ___
 
 **Combining Date and Time Columns**
 
-In data processing and cleaning, it's often necessary to merge separate date and time columns into a single datetime column for better analysis. Here's a function that achieves this using Pandas in Python:
+In data processing and analysis, there are situations where information related to date and time is stored separately in distinct columns. To facilitate more efficient analysis and computations, it's often beneficial to merge these separate date and time columns into a single datetime column. This combined datetime column provides a unified representation of both date and time, enhancing the clarity and usefulness of the data.
 
-```py
-def combine_times(date_col_name, time_col_name, new_col_name, df):
-    # Creating a copy of the DataFrame to avoid modifying the original data
-    df = df.copy()
-    
-    # Combining date and time columns to create a new datetime column
-    df[new_col_name] = df[date_col_name] + pd.to_timedelta(df[time_col_name].astype(str))
-    
-    return df
-```
+1. Opening and Reading the Data:
+We started by accessing the information stored in an Excel file named "outage.xlsx." Using Python along with Pandas, we imported this data into our program. This allowed us to view and manipulate the data within Python for analysis purposes.
 
+2. Identifying and Removing Unnecessary Information:
+Within the Excel file, there were some rows and columns that weren't needed for our analysis. Using Python, we removed these unnecessary rows and columns to focus only on the relevant data.
 
-**Reading and Cleaning** 
+3. Merging Separate Date and Time Columns:
+The data contained separate columns for the start date and start time of power outages. To make this information more manageable and useful for analysis, we combined these separate date and time columns into a new single column called "OUTAGE.START.DATETIME." This merging process allowed us to have a complete timestamp for the beginning of each outage event.
 
-Because the data was in an excel format, we used `pd.read_excel()` to read into the data. Afterwords, we called the `combine_times` function on the time columns we wanted to combine.
-```py
-import pandas as pd
-
-# Read data from the Excel file, skipping unnecessary rows and columns
-data = pd.read_excel("outage.xlsx", skiprows=[0, 1, 2, 3, 4, 6], index_col=1).iloc[:, 1:]
-
-# Combine start date and time columns into a new datetime column
-data = combine_times("OUTAGE.START.DATE", 'OUTAGE.START.TIME', 'OUTAGE.START.DATETIME', data)
-
-# Combine restoration date and time columns into another new datetime column
-data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTAGE.RESTORATION.DATETIME", data)
-
-```
+4. Similar Procedure for Restoration Timestamp:
+Similarly, there were separate columns for the restoration date and time of each outage event. Using the same approach, we merged these columns into a new combined column called "OUTAGE.RESTORATION.DATETIME." This provided a unified timestamp for when power was restored after each outage.
 
 <details markdown = "1"> 
 <summary>&#187; The First Few Rows of the Cleaned Data</summary>
@@ -142,10 +125,6 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 
 This histogram describes what Outage duration times are most common. It seems that most outage durations are often fairly short, around 0 - 1000 minutes long. 
 
-```py
-univariant_plot = px.histogram(data['OUTAGE.DURATION'])
-univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION in minutes', showlegend = False, title = 'Count of Duration of Outage')
-```
 
 <iframe src="static/uni-plot.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -154,10 +133,6 @@ univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION in minutes', showle
 
 This bar chart plots the total cumilative sum of outage time in minutes per state. You can see that Michigan and New York have a large cumalitve sum of outage time compared to the other states. 
 
-```py
-bivariant = data.groupby('U.S._STATE')['OUTAGE.DURATION'].sum().sort_values().reset_index().plot(kind = 'bar', x ='U.S._STATE' , y= 'OUTAGE.DURATION')
-
-```
 
 <iframe src="static/bi-plot.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -168,11 +143,8 @@ Found which states had the most outages
 <details markdown="1">
 <summary>&#187; Click to expand table</summary>
 
-```py
-bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
-```
 
-| U.S. State           | YEAR |
+| U.S. State           | COUNT |
 |----------------------|------|
 | California           | 210  |
 | Texas                | 127  |
@@ -285,15 +257,7 @@ The alternative hypothesis counters the null hypothesis, suggesting that there e
 
 **Test Statistc:**
 
-```py
-def calculate_outage_severity(data, state, var):
-
-    output = data.groupby(state).mean()
-    
-    return output.loc[True,var]
-```
-
-Function computes the average outage severity (mean of the variable of interest) for a given state within the dataset. We will use this as our test statistic. 
+The `calculate_outage_severity` function computes the average severity of power outages, represented by the mean of a specific variable of interest, within a given state from the dataset. This calculated average serves as our test statistic.
 
 **Permutation Test Function:**
 
@@ -341,6 +305,30 @@ for i in data['U.S._STATE'].unique():
 1. The code iterates through each unique state in the dataset.
 For each state, it conducts permutation tests for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED," generating p-values for each variable in each state.
 2. The resulting p-values are stored in separate dictionaries (all_p_values_duration and all_p_values_customers).
+
+This permutation test to assess the statistical significance of outage severity for each state concerning "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
+
+Data Preparation:
+
+Extracts columns relevant to "U.S._STATE" and the specific variable ("OUTAGE.DURATION" or "CUSTOMERS.AFFECTED").
+Generates a boolean column indicating whether each data entry corresponds to a specific state.
+Permutation Test Steps:
+Computes the observed outage severity for the chosen state and variable.
+
+Repeatedly shuffles the values of the selected variable and recalculates the severity, generating a distribution of possible severity values.
+Records the distribution of outage severity values obtained from the shuffling process.
+Computes the proportion of shuffled values greater than or equal to the observed severity, resulting in the p-value for that specific state and variable.
+Conducting Permutation Tests for Each State:
+The provided code iterates through each unique state within the dataset, executing permutation tests for "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED" separately.
+
+Permutation Tests for Outage Duration and Customers Affected:
+For each state, it performs permutation tests to derive p-values for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
+Storage of Results:
+The resulting p-values are stored separately in dictionaries (all_p_values_duration and all_p_values_customers) corresponding to each state, enabling access to the p-values for each variable in each state for further analysis and interpretation.
+
+
+
+
 
 
 **Conclusion**
@@ -396,26 +384,4 @@ graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_d
 ### Conclusion:
 
 This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities.
-
-
-
-
-
-
-
-
-
-
-
-Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
-p
--value, and your conclusion. Justify why these choices are good choices for answering the question you are trying to answer.
-
-Optional: Embed a visualization related to your hypothesis test in your website.
-
-Tip: When making writing your conclusions to the statistical tests in this project, never use language that implies an absolute conclusion; since we are performing statistical tests and not randomized controlled trials, we cannot prove that either hypothesis is 100% true or false.
-
-
-
-
 
