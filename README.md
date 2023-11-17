@@ -123,11 +123,11 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 
 ### Univariant Graph
 
-This histogram describes what Outage duration times are most common. It seems that most outage durations are often fairly short, around 
+This histogram describes what Outage duration times are most common. It seems that most outage durations are often fairly short, around 0 - 1000 minutes long. 
 
 ```py
 univariant_plot = px.histogram(data['OUTAGE.DURATION'])
-univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION', showlegend = False, title = 'Count of Duration of Outage')
+univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION in minutes', showlegend = False, title = 'Count of Duration of Outage')
 ```
 
 <iframe src="static/uni-plot.html" width=800 height=600 frameBorder=0></iframe>
