@@ -118,17 +118,14 @@ data = combine_times("OUTAGE.RESTORATION.DATE", "OUTAGE.RESTORATION.TIME", "OUTA
 Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one univariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
 
 ```py
-univariant_plot = px.histogram(data['CUSTOMERS.AFFECTED'])
-univariant_plot.update_layout(xaxis_title = 'Customers Affected', showlegend = False, title = 'Count of Customers Affected')
-
+univariant_plot = px.histogram(data['OUTAGE.DURATION'])
+univariant_plot.update_layout(xaxis_title = 'OUTAGE.DURATION', showlegend = False, title = 'Count of Duration of Outage')
 ```
 
 <iframe src="static/uni-plot.html" width=800 height=600 frameBorder=0></iframe>
 
 
 ### Bivariant Graph
-
-
 
 
 <iframe src="static/bi-plot.html" width=800 height=600 frameBorder=0></iframe>
@@ -141,7 +138,7 @@ Found which states had the most outages
 <summary>Click to expand table</summary>
 
 ```py
-data.groupby('U.S._STATE')['YEAR'].count().sort_values(ascending = False)
+bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
 ```
 
 | U.S. State           | YEAR |
