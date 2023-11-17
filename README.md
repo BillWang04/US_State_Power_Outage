@@ -5,7 +5,7 @@
 
 The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
 
-<details>
+<details markdown = "1">
   <summary>Click to expand the table</summary>
 
   | Header 1 | Header 2 |
