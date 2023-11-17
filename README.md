@@ -5,8 +5,9 @@
 
 The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
 <details>
-    <summary>Click to see variable names and descriptions</summary>
-    | Variable Name                    | Description |
+    <summary>Click to see variable names and descriptions </summary>
+    
+    | Variable Name                     | Description |
     |-----------------------------------|-------------|
     | YEAR                              | Indicates the year when the outage event occurred |
     | MONTH                             | Indicates the month when the outage event occurred |
@@ -63,6 +64,8 @@ The dataset under analysis contains comprehensive information regarding power ou
     | PCT_LAND                          | Percentage of land area in the U.S. state as compared to the overall land area in the continental U.S. (in %) |
     | PCT_WATER_TOT                     | Percentage of water area in the U.S. state as compared to the overall water area in the continental U.S. (in %) |
     | PCT_WATER_INLAND                  | Percentage of inland water area in the U.S. state as compared to the overall inland water
+
+
 </details>
 
 
