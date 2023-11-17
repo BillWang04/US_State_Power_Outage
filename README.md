@@ -253,7 +253,7 @@ There is no significant difference in the average number of affected customers a
 The alternative hypothesis counters the null hypothesis, suggesting that there exists a significant difference in average customers affected among various states in the country.
 
 
-### Code Explanation
+### Permutation Test Method
 
 **Test Statistc:**
 
@@ -281,28 +281,26 @@ Permutation Test Steps:
 
 
 
-
-
 **Conclusion**
 
-
-| U.S._STATE      | Count of Outages | duration_p_value | customer_p_value |
-|-----------------|------------------|------------------|------------------|
-| Montana         | 3                | 0.979            | 0.000            |
-| South Dakota    | 2                | 0.893            | 0.000            |
-| Texas           | 127              | 0.372            | 0.010            |
-| California      | 210              | 1.000            | 0.015            |
-| Florida         | 45               | 0.069            | 0.017            |
-| New York        | 71               | 0.000            | 0.115            |
-| West Virginia   | 4                | 0.049            | 0.212            |
-| Michigan        | 95               | 0.001            | 0.367            |
-| Alaska          | 1                | 0.000            | 0.498            |
-| Wisconsin       | 20               | 0.005            | 0.994            |
+| U.S._STATE     | Count of Outages | duration_p_value | customer_p_value |
+|----------------|------------------|------------------|------------------|
+| Texas          | 127              | 0.372            | 0.010            |
+| California     | 210              | 1.000            | 0.015            |
+| Florida        | 45               | 0.069            | 0.017            |
+| New York       | 71               | 0.000            | 0.115            |
+| West Virginia  | 4                | 0.049            | 0.212            |
+| Michigan       | 95               | 0.001            | 0.367            |
+| Wisconsin      | 20               | 0.005            | 0.994            |
 
 
 
 <iframe src="static/p_value_bar.html" width=800 height=600 frameBorder=0></iframe>
 
+
+A low p-value (typically < 0.05) indicates strong evidence against the null hypothesis, suggesting a significant difference in the mean of outage duration or number of customers affected.
+
+Conversely, a high p-value suggests weaker evidence against the null hypothesis, indicating less significant differences or impacts.
 
 
 #### Outage Duration and Customer Impact:
@@ -326,5 +324,5 @@ Permutation Test Steps:
 
 ### Conclusion:
 
-This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities.
+This analysis showcases a trend where states with non-significant differences in outage duration often present more notable impacts on affected customers. However, exceptions like Florida and New York challenge this pattern, displaying significant differences in both outage duration and affected customers. The variability observed across states underlines the intricate dynamics influencing outage durations and their corresponding impact on affected communities. If we were to make an educated guess on which states have the most severe outages, we would say that it would be Florida or New York, as their p-valeus are both relatively low, meaning there mean outage duration and affected customers are likely larger than the mean distribution. 
 
