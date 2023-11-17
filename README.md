@@ -264,7 +264,7 @@ ___
 
 **Question:**: What are the states with the worst outages?
 
-To measure how bad an outage is, we used 
+To measure how bad an outage is, we used both the outage duration and customers affected as a way to measure how bad the outage is. We then used the mean as the test statistic 
 
 Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
 p
@@ -273,4 +273,8 @@ p
 Optional: Embed a visualization related to your hypothesis test in your website.
 
 Tip: When making writing your conclusions to the statistical tests in this project, never use language that implies an absolute conclusion; since we are performing statistical tests and not randomized controlled trials, we cannot prove that either hypothesis is 100% true or false.
+
+
+<iframe src="static/p_value_bar.html" width=800 height=600 frameBorder=0></iframe>
+
 
