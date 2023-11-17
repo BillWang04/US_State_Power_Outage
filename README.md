@@ -1,9 +1,7 @@
----
 title: Power Outages Across US States
-author: Ethan Cao and Bill Wanggot
+author: Ethan Cao and Bill Wang
 
 ---
-
 
 ## Introduction to the Dataset
 ___
