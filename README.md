@@ -1,13 +1,18 @@
-## US_State_Power_Outage
+# US_State_Power_Outage
 
 
-### Introduction to the Dataset
+## Introduction to the Dataset
+Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
 
 The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages and their impact on different states.
 
+### Description of Variables
+
+We have included the definitions of the various variables/columns that we used in the analysis below.
+
 
 <details markdown="1">
-<summary>Info</summary>
+<summary>Click here to see Variable Descriptions</summary>
 
 | Variable Name                    | Description |
 |-----------------------------------|-------------|
@@ -73,11 +78,15 @@ The dataset under analysis contains comprehensive information regarding power ou
 
 ### Question:
 
- Out of the various states, which are most likely to experience the most severe power outages, and what are the primary causes?
+>Out of the various states, which are most likely to experience the most severe power outages, and what are the primary causes?
 
-This analysis centers around understanding the severity of power outages in different states within the United States and uncovering the root causes behind these outages. By identifying states prone to severe outages and the key contributing factors, stakeholders can develop targeted strategies to enhance infrastructure resilience and minimize outage impacts.
+This analysis centers around understanding the severity of power outages in different states within the United States and uncovering the root causes behind these outages. By identifying states prone to severe outages and the key contributing factors, stakeholders can develop targeted strategies to enhance infrastructure resilience and minimize outage impacts. 
 
-### Data Cleaning and EDA (Exploratory Data Analysis)
+A key thing to define is what a severe power outage is. We decided to define the severity of a power outage by the duration it lasted. This was because we reasoned that worse power outages would be harder to fix and thus take longer to fix. As well, this allowed us to control for things like the population of a state which may affect the number of people affected by an outage.
+
+## Data Cleaning and EDA (Exploratory Data Analysis)
+
+### Data Cleaning
 
 **Combining Date and Time Columns**
 
@@ -220,12 +229,14 @@ bivariant = data.plot(kind = 'bar', x = 'U.S._STATE', y = 'OUTAGE.DURATION')
 
 ## Assessment Of Missingness
 
-## NMAR CAUSE.CATEGORY.DETAIL
+### NMAR
+
+**CAUSE.CATEGORY.DETAIL**
 
 All the NAN values in CLIMATE.CATEGORY.DETAIL could be NMAR because the type of disaster may affect whether or not the data could be collected. For instance, a severe weather event like heavy rain and hail could occur at the same time and obscure the real cause of the damage. Because of this uncertaintity, this data may not have been collected for certain types of causes which may have coincided. This would cause the missingness of the data to be dependent on what kind of event was occuring and thus it would depend on itself making it NMAR.
 
 
-## MAR
+### MAR
 
 **Null Hypothesis:**
 
