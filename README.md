@@ -1,5 +1,3 @@
-us_state_power_outage
-
 ## Introduction to the Dataset
 ___
 Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
