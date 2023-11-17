@@ -1,5 +1,5 @@
 us_state_power_outage
-<-TODO /->
+
 ## Introduction to the Dataset
 ___
 Due to recent large power outages like the Texas power crisis of 2021, we wanted to investigate the causes and trends in power outages across the United States. The dataset under analysis contains comprehensive information regarding power outages across different states in the United States. Our analysis aims to explore the factors contributing to severe outages, their impact on different states, and the locations where sever outages most often occur. This would give us a better understanding of how power outages occur and how to possibly prevent them in the future.
@@ -259,72 +259,24 @@ The alternative hypothesis counters the null hypothesis, suggesting that there e
 
 The `calculate_outage_severity` function computes the average severity of power outages, represented by the mean of a specific variable of interest, within a given state from the dataset. This calculated average serves as our test statistic.
 
-**Permutation Test Function:**
 
-```py
-def perm_test(data, state, var, n=1000):
-    #1
-    data = data.copy()[["U.S._STATE", var]]
-    #2
-    data[state] = data["U.S._STATE"] == state
-    #3
-    obs = calculate_outage_severity(data, state, var)
-    test_stats = []
-    #4
-    for _ in range(n):
-        value = np.random.permutation(data[var])
-        shuffled = data.assign(**{var : value })
-        trial = calculate_outage_severity(shuffled, state, var)
-        #5
-        test_stats.append(trial)
-    #6
-    return  (np.array(test_stats) >= obs).mean()
+**Data Preparation:**
 
-```
-
-- *Data Preparation:*
-    1. Extracts relevant columns ("U.S._STATE" and the specified variable) from the dataset.
-    2. Creates a boolean column based on whether each row corresponds to a specific state.
-- *Permutation Test:*
-
-    3. Calculates the observed outage severity for the specified state and variable.
-    4. Repeatedly shuffles the values of the chosen variable (using numpy's permutation function) and recalculates the outage severity for that state.
-    5. Records the distribution of outage severity values obtained from shuffling the data.
-    6. Computes the proportion of shuffled values greater than or equal to the observed severity, providing the p-value for that specific state.
-
-**Conducting Permutation Tests for All States:**
-
-```py
-all_p_values_duration = {}
-all_p_values_customers = {}
-for i in data['U.S._STATE'].unique():
-    all_p_values_duration[i] = perm_test(data, i, "OUTAGE.DURATION")
-    all_p_values_customers[i] = perm_test(data, i , "CUSTOMERS.AFFECTED")
-```
-
-1. The code iterates through each unique state in the dataset.
-For each state, it conducts permutation tests for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED," generating p-values for each variable in each state.
-2. The resulting p-values are stored in separate dictionaries (all_p_values_duration and all_p_values_customers).
-
-This permutation test to assess the statistical significance of outage severity for each state concerning "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
-
-Data Preparation:
-
-Extracts columns relevant to "U.S._STATE" and the specific variable ("OUTAGE.DURATION" or "CUSTOMERS.AFFECTED").
-Generates a boolean column indicating whether each data entry corresponds to a specific state.
+1. Extracts columns relevant to "U.S._STATE" and the specific variable ("OUTAGE.DURATION" or "CUSTOMERS.AFFECTED").
+2. Generates a boolean column indicating whether each data entry corresponds to a specific state.
 Permutation Test Steps:
-Computes the observed outage severity for the chosen state and variable.
+3. Computes the observed outage severity for the chosen state and variable.
 
-Repeatedly shuffles the values of the selected variable and recalculates the severity, generating a distribution of possible severity values.
-Records the distribution of outage severity values obtained from the shuffling process.
-Computes the proportion of shuffled values greater than or equal to the observed severity, resulting in the p-value for that specific state and variable.
-Conducting Permutation Tests for Each State:
-The provided code iterates through each unique state within the dataset, executing permutation tests for "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED" separately.
+**Permutation Test**
 
-Permutation Tests for Outage Duration and Customers Affected:
-For each state, it performs permutation tests to derive p-values for both "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED".
-Storage of Results:
-The resulting p-values are stored separately in dictionaries (all_p_values_duration and all_p_values_customers) corresponding to each state, enabling access to the p-values for each variable in each state for further analysis and interpretation.
+1. Repeatedly shuffles the values of the selected variable(either "OUTAGE.DURATION" or "CUSTOMRS.AFFECTED") and recalculates the severity, generating a distribution of possible severity values of the null.
+2. Records the distribution of outage severity values obtained from the shuffling process of "OUTAGE.DURATION", "CUSTOMERS.AFFECTED".
+3. Computes the proportion of shuffled values greater than or equal to the observed severity, resulting in the p-value for that specific state and variable.
+
+**Conducting Permutation Tests for Each State:**
+1. The provided code iterates through each unique state within the dataset, executing permutation tests for "OUTAGE.DURATION" and "CUSTOMERS.AFFECTED" separately.
+
+2. The resulting p-values are stored separately in the dataframe corresponding to each state, enabling access to the p-values for each variable in each state for further analysis and interpretation.
 
 
 
@@ -333,15 +285,6 @@ The resulting p-values are stored separately in dictionaries (all_p_values_durat
 
 **Conclusion**
 
-
-```py
-initial = pd.DataFrame({'duration_p_value' : pd.Series(all_p_values_duration),
-              'customer_p_value' : pd.Series(all_p_values_customers)})
-
-resulting_df = data.groupby('U.S._STATE')[['YEAR']].count().merge(initial, left_index = True, right_index = True).rename(columns = {'YEAR': 'Count of Outages'})
-
-graph_df = resulting_df[(resulting_df['duration_p_value'] < 0.05) | (resulting_df['customer_p_value'] < 0.05 )].sort_values('customer_p_value')
-```
 
 | U.S._STATE      | Count of Outages | duration_p_value | customer_p_value |
 |-----------------|------------------|------------------|------------------|
