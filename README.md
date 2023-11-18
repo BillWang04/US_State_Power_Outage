@@ -6,11 +6,24 @@ Due to recent large power outages like the Texas power crisis of 2021, we wanted
 
 ### Description of Variables
 
-The dataset contains 1534 rows and 55 columns. For this analysis, we decided to only use a few relevent columns. Namely, these were U.S._State, OUTAGE.START.DATE, OUTAGE.START.TIME, OUTAGE.RESTORATION.DATE, OUTAGE.RESTORATION.TIME, CAUSE.CATEGORY.DETAIL, CUSTOMERS.AFFECTED, and OUTAGE.DURATION . We have included the definitions of the 55 various variables/columns that we used in the analysis below.
+The dataset contains 1534 rows and 55 columns. For this analysis, we decided to only use a few relevent columns. Namely, these were U.S._State, OUTAGE.START.DATE, OUTAGE.START.TIME, OUTAGE.RESTORATION.DATE, OUTAGE.RESTORATION.TIME, CAUSE.CATEGORY.DETAIL, CUSTOMERS.AFFECTED, and OUTAGE.DURATION. 
 
+| Variable Name                    | Description |
+|-----------------------------------|-------------|
+| `U.S._STATE`                        | Represents all the states in the continental U.S. |
+| `CLIMATE.CATEGORY`                  | Represents the climate episodes corresponding to the years. The categories are “Warm”, “Cold” or “Normal” episodes of the climate based on a threshold of ± 0.5 °C for the Oceanic Niño Index (ONI) |
+| `OUTAGE.START.DATE`                 | This variable indicates the day of the year when the outage event started (as reported by the corresponding Utility in the region) |
+| `OUTAGE.START.TIME`                 | This variable indicates the time of the day when the outage event started (as reported by the corresponding Utility in the region) |
+| `OUTAGE.RESTORATION.DATE`           | This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region) |
+| `OUTAGE.RESTORATION.TIME`           | This variable indicates the time of the day when power was restored to all the customers (as reported by the corresponding Utility in the region) |
+| `CAUSE.CATEGORY.DETAIL`             | Detailed description of the event categories causing the major power outages |
+| `CUSTOMERS.AFFECTED`                | Number of customers affected by the power outage event |
+| `OUTAGE.DURATION`                   | Duration of outage events (in minutes) |
+
+We have also included the definitions of the 55 various variables/columns that we used in the analysis below.
 
 <details markdown="1">
-<summary>&#187; Click here to see Variable Descriptions</summary>
+<summary>&#187; Click here to see all Variable Descriptions</summary>
 
 | Variable Name                    | Description |
 |-----------------------------------|-------------|
