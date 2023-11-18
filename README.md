@@ -245,6 +245,7 @@ We found that the p_value/alpha given was 0, meaning that we would reject the nu
 
 <iframe src="static/mar-hist.html" width=800 height=600 frameBorder=0></iframe>
 
+We also ran a permutation test for the missingness of `CUSTOMERS.AFFECTED` with respect to `CLIMATE.CATEGORY`. We found that `CUSTOMERS.AFFECTED` is likely not missing at random with respect to `CLIMATE.CATEGORY`. This is because the p-value of 0.348 for the observed value is greater than our significance cut-off of 0.05. Therefore it seems likely that `CUSTOMERS.AFFECTED` is MCAR with respect to `CLIMATE.CATEGORY`.
 
 ## Hypothesis Testing
 
