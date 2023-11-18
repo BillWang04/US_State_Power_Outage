@@ -6,7 +6,7 @@ Due to recent large power outages like the Texas power crisis of 2021, we wanted
 
 ### Description of Variables
 
-The dataset contains 1534 rows and 55 columns. For this analysis, we decided to only use a few relevent columns. Namely, these were U.S._State, OUTAGE.START.DATE, OUTAGE.START.TIME, OUTAGE.RESTORATION.DATE, OUTAGE.RESTORATION.TIME, CAUSE.CATEGORY.DETAIL, CUSTOMERS.AFFECTED, and OUTAGE.DURATION. 
+The dataset contains 1534 rows and 55 columns. For this analysis, we decided to only use a few relevent columns. The main variables used and their descriptions are detailed below.
 
 | Variable Name                    | Description |
 |-----------------------------------|-------------|
@@ -20,7 +20,7 @@ The dataset contains 1534 rows and 55 columns. For this analysis, we decided to 
 | `CUSTOMERS.AFFECTED`                | Number of customers affected by the power outage event |
 | `OUTAGE.DURATION`                   | Duration of outage events (in minutes) |
 
-We have also included the definitions of the 55 various variables/columns that we used in the analysis below.
+We have also included the definitions of the 55 various variables/columns that were included in the data below.
 
 <details markdown="1">
 <summary>&#187; Click here to see all Variable Descriptions</summary>
