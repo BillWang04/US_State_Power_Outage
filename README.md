@@ -76,9 +76,9 @@ The dataset contains 1534 rows and 55 columns. For this analysis, we decided to 
 
 ### Question:
 
->Out of the various states, which are most likely to experience the most severe power outages, and what are the primary causes?
+>Out of the various states, which states experience the most severe power outages?
 
-This analysis centers around understanding the severity of power outages in different states within the United States and uncovering the root causes behind these outages. By identifying states prone to severe outages and the key contributing factors, stakeholders can develop targeted strategies to enhance infrastructure resilience and minimize outage impacts. 
+This analysis centers around understanding the severity of power outages in different states within the United States and uncovering the root causes behind these outages. By identifying states prone to severe outages, stakeholders can develop targeted strategies to enhance infrastructure resilience and minimize outage impacts. 
 
 A key thing to define is what a severe power outage is. We decided to define the severity of a power outage by the duration it lasted. This was because we reasoned that worse power outages would be harder to fix and thus take longer to fix. As well, this allowed us to control for things like the population of a state which may affect the number of people affected by an outage.
 
@@ -138,7 +138,7 @@ This bar chart plots the total cumilative sum of outage time in minutes per stat
 
 
 ### Interesting Aggregate
-Found which states had the most outages
+The table provides a comprehensive overview of power outages across various U.S. states, highlighting the frequency of occurrences.
 
 <details markdown="1">
 <summary>&#187; Click to expand table</summary>
